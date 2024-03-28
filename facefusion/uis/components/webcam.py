@@ -30,12 +30,8 @@ WEBCAM_STOP_BUTTON : Optional[gradio.Button] = None
 
 def get_webcam_capture() -> Optional[cv2.VideoCapture]:
 	global WEBCAM_CAPTURE
-
 	if WEBCAM_CAPTURE is None:
-		if platform.system().lower() == 'windows':
-			webcam_capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-		else:
-			webcam_capture = cv2.VideoCapture(0)
+		webcam_capture = cv2.VideoCapture('udp://172.31.192.1:5000')  # Adjust the URL/port as needed
 		if webcam_capture and webcam_capture.isOpened():
 			WEBCAM_CAPTURE = webcam_capture
 	return WEBCAM_CAPTURE
